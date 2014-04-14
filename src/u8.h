@@ -14,11 +14,18 @@ private:
 };
 
 enum class compare_type {
-    ignore_accent_case = boost::locale::collator_base::primary,
-    ignore_case,
-    ignore_punctuation,
-    representation,
-    code_points
+    ignore_accent_case  = boost::locale::collator_base::primary,
+    ignore_case         = boost::locale::collator_base::secondary,
+    ignore_punctuation  = boost::locale::collator_base::tertiary,
+    representation      = boost::locale::collator_base::quaternary,
+    code_points         = boost::locale::collator_base::identical
+};
+
+enum class normalize_type {
+    nfd,
+    nfc,
+    nfkd,
+    nfkc
 };
 
 /*
@@ -62,5 +69,11 @@ std::vector<std::string> split(const std::string& str, const std::string& devide
  */
 bool equals(const std::string& x, const std::string& y,
             compare_type type = compare_type::representation);
+
+/*
+ * @method normalize
+ * returns new string without accents
+ */
+std::string normalize(const std::string& str);
 
 } /* namespace u8 */

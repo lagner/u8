@@ -41,3 +41,5 @@ add_subdirectory(src)
 
 # test u8 it
 add_subdirectory(test)
+
+add_test(NAME all_tests COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/test_u8lib)

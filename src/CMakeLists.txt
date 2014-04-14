@@ -4,10 +4,8 @@ aux_source_directory(. SRC_LIST)
 
 # add boost
 find_package(Boost REQUIRED locale)
-include_directories(${Boost_INCLUDE_DIRS})
 
 # tests executable
-set(SRC_LIST ${SRC_LIST})
 set(INC_LIST ${INC_LIST} ${Boost_INCLUDE_DIRS})
 set(LIB_LIST ${LIB_LIST} ${Boost_LIBRARIES})
 

@@ -1,4 +1,4 @@
-project(test_u8)
+project(u8)
 
 cmake_minimum_required(VERSION 2.8)
 
@@ -16,16 +16,14 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -std=c11")
 set(CMAKE_C_FLAGS_DEBUG "-O0 -g -D_DEBUG")
 set(CMAKE_C_FLAGS_RELEASE "-O3 -DNDEBUG")
 
-# build u8 lib
-add_subdirectory(src)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/)
 
-aux_source_directory(. SRC_LIST)
-
-#find_package(GTest REQUIRED)
-include_directories(${GTEST_INCLUDE_DIRS})
-
-# setup google test 
 enable_testing()
+
+
+# build gtest library.
 set(GTEST_ROOT ${CMAKE_SOURCE_DIR}/deps/gtest)
 set(GTEST_FOUND ON)
 set(GTEST_INCLUDE_DIRS ${GTEST_ROOT}/include)
@@ -33,9 +31,13 @@ set(GTEST_LIBRARY gtest)
 set(GTEST_MAIN_LIBRARY gtest_main)
 set(GTEST_BOTH_LIBRARIES ${GTEST_LIBRARY} ${GTEST_MAIN_LIBRARY})
 
-set(LIB_LIST ${LIB_LIST} ${CMAKE_SOURCE_DIR}/libs/${GTEST_LIBRARIES})
-set(LIB_LIST ${LIB_LIST} ${CMAKE_SOURCE_DIR}/libs/${GTEST_MAIN_LIBRARIES})
-set(LIB_LIST ${LIB_LIST} u8 pthread)
+add_subdirectory(deps/gtest)
 
-add_executable(${PROJECT_NAME} ${SRC_LIST})
-target_link_libraries(${PROJECT_NAME} ${LIB_LIST})
+# build u8 library
+set(U8_INCLUDE_DIRS ${CMAKE_SOURCE_DIR}/src)
+set(U8_LIBRARY ${PROJECT_NAME})
+
+add_subdirectory(src)
+
+# test u8 it
+add_subdirectory(test)

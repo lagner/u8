@@ -1,4 +1,4 @@
-project(u8)
+project(${U8_LIBRARY})
 
 aux_source_directory(. SRC_LIST)
 

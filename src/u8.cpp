@@ -55,6 +55,7 @@ string to_title(const string& str) {
 }
 
 std::vector<std::string> split(const string& str, const string& devider) {
+    return std::vector<std::string> { str, devider };
 }
 
 bool equals(const string& x, const string& y, compare_type type) {

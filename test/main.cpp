@@ -23,7 +23,10 @@ TEST(u8_test, to_lower) {
 
 TEST(u8_test, normalize) {
     std::string x(u8"façade");
-    auto y = u8::normalize(x, u8::normalize_type::nfkc);
+    auto cs = u8::normalize(x, u8::normalize_type::nfc);
+    ASSERT_EQ(cs.size(), 7);
+    auto ds = u8::normalize(x, u8::normalize_type::nfd);
+    ASSERT_EQ(ds.size(), 8);
 }
 
 TEST(u8_test, split) {

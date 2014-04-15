@@ -26,6 +26,18 @@ TEST(u8_test, normalize) {
     auto y = u8::normalize(x, u8::normalize_type::nfkc);
 }
 
+TEST(u8_test, split) {
+    std::string x(u8" pos is specified, the position pos, ignoring before pos");
+    auto res = u8::split(x, ",");
+    ASSERT_EQ(res.size(), 3);
+
+    res = u8::split(x, " ");
+    ASSERT_EQ(res.size(), 9);
+
+    res = u8::split(x, "specified");
+    ASSERT_EQ(res.size(), 2);
+}
+
 int main(int argc, char **argv) {
     u8::locale_guard loc("");
     (void)loc;

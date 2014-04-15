@@ -22,7 +22,6 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/)
 
 enable_testing()
 
-
 # build gtest library.
 set(GTEST_ROOT ${CMAKE_SOURCE_DIR}/deps/gtest)
 set(GTEST_FOUND ON)

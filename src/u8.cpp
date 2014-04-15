@@ -3,6 +3,7 @@
 #include <iterator>
 #include <boost/locale.hpp>
 #include <boost/algorithm/string.hpp>
+#include <boost/algorithm/string/find.hpp>
 #include "u8.h"
 
 using namespace std;
@@ -55,7 +56,28 @@ string to_title(const string& str) {
 }
 
 std::vector<std::string> split(const string& str, const string& devider) {
-    return std::vector<std::string> { str, devider };
+    std::vector<std::string> res;
+    size_t index(0), offset(0), len(0);
+    const size_t wide(devider.size());
+    do {
+        index = str.find(devider, offset);
+        if (!index) {
+            offset += wide;
+            continue;
+        }
+
+        if (index == string::npos) {
+            len = str.size() - offset;
+        } else {
+            len = index - offset;
+        }
+
+        res.push_back(string(str, offset, len));
+        offset = index + wide;
+
+    } while (index != string::npos);
+
+    return res;
 }
 
 bool equals(const string& x, const string& y, compare_type type) {

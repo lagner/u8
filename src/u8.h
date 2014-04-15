@@ -22,10 +22,10 @@ enum class compare_type {
 };
 
 enum class normalize_type {
-    nfd,
-    nfc,
-    nfkd,
-    nfkc
+    nfd     = boost::locale::norm_nfd,
+    nfc     = boost::locale::norm_nfc,
+    nfkd    = boost::locale::norm_nfkd,
+    nfkc    = boost::locale::norm_nfkc
 };
 
 /*
@@ -74,6 +74,6 @@ bool equals(const std::string& x, const std::string& y,
  * @method normalize
  * returns new string without accents
  */
-std::string normalize(const std::string& str);
+std::string normalize(const std::string& str, normalize_type type = normalize_type::nfc);
 
 } /* namespace u8 */

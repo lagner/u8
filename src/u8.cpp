@@ -66,8 +66,9 @@ bool equals(const string& x, const string& y, compare_type type) {
     return res;
 }
 
-string normalize(const string& str) {
-    return boost::locale::normalize(str, boost::locale::norm_nfkc);
+string normalize(const string& str, normalize_type type) {
+    using namespace boost::locale;
+    return boost::locale::normalize(str, static_cast<decltype(norm_default)>(type));
 }
 
 } /* namespace u8 */

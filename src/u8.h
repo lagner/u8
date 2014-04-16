@@ -79,6 +79,19 @@ bool equals(const std::string& x, const std::string& y,
  */
 std::string normalize(const std::string& str, normalize_type type = normalize_type::nfc);
 
+/*
+ * @method from_utf_32
+ * returns new string using utf-8 charset
+ */
+std::string from_utf_32(const std::wstring& str);
+
+std::string from_utf_32(const std::u32string& str);
+
+/*
+ * @method from_utf_16
+ */
+std::string from_utf_16(const std::u16string& str);
+
 } /* namespace u8 */
 
 #endif

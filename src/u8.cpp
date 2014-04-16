@@ -94,4 +94,16 @@ string normalize(const string& str, normalize_type type) {
     return boost::locale::normalize(str, static_cast<decltype(norm_default)>(type));
 }
 
+string from_utf_32(const wstring& str) {
+    return boost::locale::conv::utf_to_utf<char>(str);
+}
+
+string from_utf_32(const u32string& str) {
+    return boost::locale::conv::utf_to_utf<char>(str);
+}
+
+string from_utf_16(const u16string& str) {
+    return boost::locale::conv::utf_to_utf<char>(str);
+}
+
 } /* namespace u8 */

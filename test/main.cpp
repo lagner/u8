@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
-#include <gtest/gtest.h>
 #include <u8.h>
+#include <gtest/gtest.h>
 
 using namespace std;
 
@@ -51,6 +51,16 @@ TEST(u8_test, at) {
     std::string y(u8"ПриВет");
     ASSERT_EQ(u8::at(y, 0), u8"П");
     ASSERT_EQ(u8::at(y, 2), u8"и");
+}
+
+TEST(u8_test, converter) {
+    std::u32string s32(U"ПриВет");
+    auto res = u8::from_utf_32(s32);
+    ASSERT_TRUE(u8::equals(res, u8"ПриВет"));
+
+    std::u16string s16(u"ПриВет");
+    res = u8::from_utf_16(s16);
+    ASSERT_TRUE(u8::equals(res, u8"ПриВет"));
 }
 
 int main(int argc, char **argv) {

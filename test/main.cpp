@@ -33,12 +33,24 @@ TEST(u8_test, split) {
     std::string x(u8" pos is specified, the position pos, ignoring before pos");
     auto res = u8::split(x, ",");
     ASSERT_EQ(res.size(), 3);
+    ASSERT_EQ(res.front(), u8" pos is specified");
+    ASSERT_EQ(res.back(), u8" ignoring before pos");
 
     res = u8::split(x, " ");
     ASSERT_EQ(res.size(), 9);
 
     res = u8::split(x, "specified");
     ASSERT_EQ(res.size(), 2);
+}
+
+TEST(u8_test, at) {
+    std::string x(u8"façade");
+    ASSERT_EQ(u8::at(x, 0), u8"f");
+    ASSERT_EQ(u8::at(x, 2), u8"ç");
+
+    std::string y(u8"ПриВет");
+    ASSERT_EQ(u8::at(y, 0), u8"П");
+    ASSERT_EQ(u8::at(y, 2), u8"и");
 }
 
 int main(int argc, char **argv) {

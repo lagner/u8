@@ -13,6 +13,8 @@ typedef std::string::const_iterator CIter;
 
 namespace u8 {
 
+// -----------------------------------------------------------------------------------
+
 locale_guard::locale_guard(const std::string& loc) {
     using namespace boost::locale;
     generator gen;
@@ -28,7 +30,7 @@ locale_guard::~locale_guard() {
     std::cout.imbue(loc_);
 }
 
-// ---------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------
 
 size_t size(const string& str) {
     segment_index<std::string::const_iterator> map(character, str.begin(), str.end());
@@ -66,11 +68,10 @@ std::vector<std::string> split(const string& str, const string& devider) {
             continue;
         }
 
-        if (index == string::npos) {
+        if (index == string::npos)
             len = str.size() - offset;
-        } else {
+        else
             len = index - offset;
-        }
 
         res.push_back(string(str, offset, len));
         offset = index + wide;

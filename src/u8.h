@@ -1,4 +1,6 @@
-#pragma once
+#ifndef U8_H
+#define U8_H
+
 #include <string>
 #include <vector>
 #include <locale>
@@ -30,19 +32,19 @@ enum class normalize_type {
 
 /*
  * @method size
- * returns the size of string in terms of user readable letters
+ * returns the number of letters in string, not bytes
  */
 size_t size(const std::string& str);
 
 /*
  * @method at
- * returns a letter in index position
+ * returns a letter in index position. Counting begins from 0
  */
 std::string at(const std::string& str, size_t index);
 
 /*
  * @method to_upper
- * returns new string in the uppercase
+ * returns new string in the upper case
  */
 std::string to_upper(const std::string& str);
 
@@ -54,12 +56,13 @@ std::string to_lower(const std::string& str);
 
 /*
  * @method to_title
+ * every word in returned new string were capitalized
  */
 std::string to_title(const std::string& str);
 
 /*
  * @method split
- * returns the number of strings from devided str
+ * returns the strings collection created from str
  */
 std::vector<std::string> split(const std::string& str, const std::string& devider);
 
@@ -72,8 +75,10 @@ bool equals(const std::string& x, const std::string& y,
 
 /*
  * @method normalize
- * returns new string without accents
+ * returns new normalized string
  */
 std::string normalize(const std::string& str, normalize_type type = normalize_type::nfc);
 
 } /* namespace u8 */
+
+#endif

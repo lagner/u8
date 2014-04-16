@@ -18,6 +18,7 @@ namespace u8 {
 locale_guard::locale_guard(const std::string& loc) {
     using namespace boost::locale;
     generator gen;
+    gen.locale_cache_enabled(true);
     std::locale new_loc = gen(loc);
     loc_ = std::locale::global(new_loc);
     std::cin.imbue(new_loc);
